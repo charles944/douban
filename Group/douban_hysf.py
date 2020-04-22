@@ -3,7 +3,7 @@ import time
 
 INIT_TIMESTAMP=1577808000
 SCORE_LIST=[]
-data_list=['04-20 02:04','04-22 13:20','04-22 13:20','2014-09-05']
+data_list=['04-20 02:04','04-22 13:20','04-22 13:20','2019-09-05']
 # start_time='2020-1-1 00:00:00'
 # timeArray=time.strptime(start_time,"%Y-%m-%d %H:%M:%S")
 # timeStamp=int(time.mktime(timeArray))
@@ -24,6 +24,13 @@ for start_time in data_list:
     diff_timeStamp=timeStamp-INIT_TIMESTAMP
     score=diff_timeStamp/(int(time.time())-INIT_TIMESTAMP)
     SCORE_LIST.append(score)
-# print(diff_timeStamp,score)
 
+sum=0
+for a in SCORE_LIST:
+    sum=sum+a
+
+
+# print(diff_timeStamp,score)
+print("该小组得分为：",int((sum/len(SCORE_LIST))*100))
+print("该小组得分为：",(sum/len(SCORE_LIST))*100)
 print(SCORE_LIST)
