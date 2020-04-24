@@ -1,0 +1,80 @@
+GET https://www.douban.com/j/group/248952/request_join_form?_=1587725286668 HTTP/1.1
+Host: www.douban.com
+Connection: keep-alive
+Accept: text/html, */*; q=0.01
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400
+Referer: https://www.douban.com/group/blabla/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: ll="118159"; bid=SBJfZSqlCYI; UM_distinctid=1719585ea092ee-09eaec169ebd72-335e4e71-1fa400-1719585ea0ab66; __gads=ID=0b6b5c7f11dd534a:T=1587358154:S=ALNI_MaHoMcpE1Yk1tbj1s2xjAz9nUjoaA; __yadk_uid=72bieSiiYndibrvDNKzIiBWiI0PDLlX6; douban-profile-remind=1; push_doumail_num=0; __utmv=30149280.6388; ct=y; gr_user_id=bc950022-82b1-4f8f-a804-9ca71f35b969; _vwo_uuid_v2=DC29C8D852012C504C3DBE750A4D413A5|0c2db0a2bc41bfcb4ffba141184dfbc3; douban-fav-remind=1; __utmz=30149280.1587463037.5.2.utmcsr=baidu|utmccn=(organic)|utmcmd=organic; __utmc=30149280; dbcl2="63880601:TEd7BeNkpk4"; ck=X1B4; push_noty_num=0; _pk_ses.100001.8cb4=*; ap_v=0,6.0; CNZZDATA1272964020=98892092-1587351160-%7C1587720172; __utma=30149280.553367767.1587353279.1587711773.1587722887.14; _pk_id.100001.8cb4=e3c8a01fa06eac3f.1587352468.13.1587725268.1587713907.; __utmt=1; __utmb=30149280.18.6.1587725270313
+
+
+HTTP/1.1 200 OK
+Date: Fri, 24 Apr 2020 10:48:08 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Keep-Alive: timeout=30
+Vary: Accept-Encoding
+Vary: Accept-Encoding
+X-Xss-Protection: 1; mode=block
+X-Douban-Mobileapp: 0
+Expires: Sun, 1 Jan 2006 01:00:00 GMT
+Pragma: no-cache
+Cache-Control: must-revalidate, no-cache, private
+X-DAE-App: group
+X-DAE-Instance: default
+X-DAE-Mountpoint: True
+Server: dae
+Strict-Transport-Security: max-age=15552000;
+Content-Length: 1594
+
+
+<style>
+  a.join-guide-link {
+    color: #3BA94D;
+  }
+  a.join-guide-link:hover {
+    color: #fff;
+  }
+  .join-attention {
+    color: #C0C0C0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+  }
+</style>
+<div class="indentpop clearfix" style="_width:485px">
+    <form id="joinform" name="joinform" action="https://www.douban.com/group/blabla/" method="post" style="position: relative;"><div style="display:none;"><input type="hidden" name="ck" value="X1B4"/></div>
+        
+    <h2>
+        加入小组
+            &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;
+    </h2>
+
+        <div>
+            <div>
+              小组管理员需要验证你的身份，请输入你的请求信息。
+            </div>
+            <div>
+                <input type="hidden" value="request_join" name="action"/>
+                <textarea name="message" id="message" class="w450 h65"></textarea>
+                <label id="left_n" class="pl">100</label>
+                <ul class="interest_form" id="submits">
+                    <li class="mt15">
+                        <input type="submit" value="发送" name="send"/>
+                        <input type="button" name="cancel" value="取消" onclick="pop_win.close();"/>
+                    </li>
+                </ul>
+              <p class="join-attention">*申请被拒绝后等待7天后可再次申请</p>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+(function(){
+    var form = $("#joinform");
+    $('textarea', form).display_limit(100, $('#left_n'));
+})()
+</script>
