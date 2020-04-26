@@ -16,16 +16,19 @@ from Auto.account import Account
 # uid=uid.group(1)
 # # print(uid.group(1))
 
-def getUsername():
-    pass
 
-
-def getPassword():
-    pass
 
 
 if __name__ == '__main__':
-    username=getUsername()
-    password=getPassword()
-    account=Account(username,password)
-    resq=account.signIn()
+    with open("demo.txt","r",encoding="utf-8") as f:
+        contents=f.readlines()
+        print(len(contents))
+        for content in contents:
+            content_list=content.split("----")
+            username=content_list[0].strip()
+            password=content_list[1].strip()
+            print("账号：",username,"密码：",password)
+            account=Account(username,password)
+            # 发送登陆包，获取登陆包的返回值
+            resq=account.signIn()
+

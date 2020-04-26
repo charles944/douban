@@ -1,0 +1,77 @@
+POST https://accounts.douban.com/j/mobile/login/basic HTTP/1.1
+Host: accounts.douban.com
+Connection: keep-alive
+Content-Length: 68
+Accept: application/json
+Origin: https://accounts.douban.com
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3741.400 QQBrowser/10.5.3863.400
+Content-Type: application/x-www-form-urlencoded
+Referer: https://accounts.douban.com/passport/login_popup?login_source=anony
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: ll="108296"; bid=V3e8zvB0Arg; UM_distinctid=16d342ded830-0f4e60f7c51381-49724b16-1fa400-16d342ded84df; _vwo_uuid_v2=D753D95AFC693ECFF3F393F1E7AF13526|d4e4973a6b15667ca3bdd03680fd44ca; __utmv=30149280.6388; douban-fav-remind=1; __gads=ID=dce5962aafd3238c:T=1568824449:S=ALNI_Mby2AjOG_DnmpUg6Z-iLPlT2JO9HQ; gr_user_id=dd96d142-de5f-464f-a20e-c3110d92376f; douban-profile-remind=1; _ga=GA1.2.2068426497.1568538490; cn_d6168da03fa1ahcc4e86_dplus=%7B%22distinct_id%22%3A%20%2216d342ded830-0f4e60f7c51381-49724b16-1fa400-16d342ded84df%22%2C%22%24id%22%3A%20%2263880601%22%2C%22%24_sessionid%22%3A%200%2C%22%24_sessionTime%22%3A%201570637418%2C%22initial_view_time%22%3A%20%221570634656%22%2C%22initial_referrer%22%3A%20%22https%3A%2F%2Fsearch.douban.com%2Fmovie%2Fsubject_search%3Fsearch_text%3D%25E7%2581%25AB%25E9%2594%2585%25E8%258B%25B1%25E9%259B%2584%26cat%3D1002%22%2C%22initial_referrer_domain%22%3A%20%22search.douban.com%22%2C%22%24dp%22%3A%200%2C%22%24_sessionPVTime%22%3A%201570637418%7D; push_noty_num=0; push_doumail_num=0; ct=y; _pk_ref.100001.2fad=%5B%22%22%2C%22%22%2C1587216001%2C%22https%3A%2F%2Fmovie.douban.com%2Fsubject%2F1947091%2F%22%5D; _pk_id.100001.2fad=06d1eb7b27ab47df.1571495924.7.1587216001.1586790203.; CNZZDATA1272964020=1075022214-1571491766-https%253A%252F%252Fmovie.douban.com%252F%7C1587214213; viewed="26760348_25916599_5336893_26977414_30203275_27593848_27193454"; __utmz=30149280.1587733111.150.24.utmcsr=baidu|utmccn=(organic)|utmcmd=organic; __utmc=30149280; ap_v=0,6.0; __utma=30149280.2068426497.1568538490.1587913520.1587921396.155; __utmt=1; apiKey=; __utmb=30149280.5.10.1587921396; login_start_time=1587921746641
+
+ck=&name=15000950339&password=weippp555199452&remember=false&ticket=
+HTTP/1.1 200 OK
+Date: Sun, 26 Apr 2020 17:22:48 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Keep-Alive: timeout=30
+Vary: Accept-Encoding
+X-Xss-Protection: 1; mode=block
+X-Douban-Mobileapp: 0
+Expires: Sun, 1 Jan 2006 01:00:00 GMT
+Pragma: no-cache
+Cache-Control: must-revalidate, no-cache, private
+X-Frame-Options: SAMEORIGIN
+Access-Control-Allow-Origin: *
+X-DAE-App: accounts
+X-DAE-Instance: default
+Server: dae
+Strict-Transport-Security: max-age=15552000
+X-Content-Type-Options: nosniff
+Content-Length: 537
+
+{"status":"failed","message":"captcha_required","description":"需要图形验证码","payload":{"captcha_signature_sample":"17:4,18:b","captcha_image_url":"https:\/\/accounts.douban.com\/j\/captcha\/show?vid=login:captcha:YhpSJRTCog3oSXTsksQeoeDI&size=small","captcha_id":"login:captcha:YhpSJRTCog3oSXTsksQeoeDI","touch_cap_url":"https:\/\/captcha.guard.qcloud.com\/template\/TCapIframeApi.js?appid=1256832851&clientype=2&lang=2052&asig=ta8a54VpmiurIc46zKI6fFqtKUVki-GSBfcW6Od6n_Ay8hzT5l6H28gqYbyuj3aot1sKME3pRyUZl8Xg4s4XewfsfM1t4c8B"}}
+
+------------------------------------------------------------------
+
+POST https://accounts.douban.com/j/mobile/login/basic HTTP/1.1
+Host: accounts.douban.com
+Connection: keep-alive
+Content-Length: 144
+Accept: application/json
+Origin: https://accounts.douban.com
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3741.400 QQBrowser/10.5.3863.400
+Content-Type: application/x-www-form-urlencoded
+Referer: https://accounts.douban.com/passport/login_popup?login_source=anony
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: ll="108296"; bid=V3e8zvB0Arg; UM_distinctid=16d342ded830-0f4e60f7c51381-49724b16-1fa400-16d342ded84df; _vwo_uuid_v2=D753D95AFC693ECFF3F393F1E7AF13526|d4e4973a6b15667ca3bdd03680fd44ca; __utmv=30149280.6388; douban-fav-remind=1; __gads=ID=dce5962aafd3238c:T=1568824449:S=ALNI_Mby2AjOG_DnmpUg6Z-iLPlT2JO9HQ; gr_user_id=dd96d142-de5f-464f-a20e-c3110d92376f; douban-profile-remind=1; _ga=GA1.2.2068426497.1568538490; cn_d6168da03fa1ahcc4e86_dplus=%7B%22distinct_id%22%3A%20%2216d342ded830-0f4e60f7c51381-49724b16-1fa400-16d342ded84df%22%2C%22%24id%22%3A%20%2263880601%22%2C%22%24_sessionid%22%3A%200%2C%22%24_sessionTime%22%3A%201570637418%2C%22initial_view_time%22%3A%20%221570634656%22%2C%22initial_referrer%22%3A%20%22https%3A%2F%2Fsearch.douban.com%2Fmovie%2Fsubject_search%3Fsearch_text%3D%25E7%2581%25AB%25E9%2594%2585%25E8%258B%25B1%25E9%259B%2584%26cat%3D1002%22%2C%22initial_referrer_domain%22%3A%20%22search.douban.com%22%2C%22%24dp%22%3A%200%2C%22%24_sessionPVTime%22%3A%201570637418%7D; push_noty_num=0; push_doumail_num=0; ct=y; _pk_ref.100001.2fad=%5B%22%22%2C%22%22%2C1587216001%2C%22https%3A%2F%2Fmovie.douban.com%2Fsubject%2F1947091%2F%22%5D; _pk_id.100001.2fad=06d1eb7b27ab47df.1571495924.7.1587216001.1586790203.; CNZZDATA1272964020=1075022214-1571491766-https%253A%252F%252Fmovie.douban.com%252F%7C1587214213; viewed="26760348_25916599_5336893_26977414_30203275_27593848_27193454"; __utmz=30149280.1587733111.150.24.utmcsr=baidu|utmccn=(organic)|utmcmd=organic; __utmc=30149280; ap_v=0,6.0; __utma=30149280.2068426497.1568538490.1587913520.1587921396.155; __utmt=1; apiKey=; __utmb=30149280.5.10.1587921396; login_start_time=1587921746641
+
+ck=&name=15000950339&password=weippp555199452&remember=false&ticket=gLjD0DHDlaGwO9wBGPKJoRhi5tBlA_NohDnYG4xh5gazMpo2yLdmreOLVLpFgCM1RRUIwJWejXE*
+HTTP/1.1 200 OK
+Date: Sun, 26 Apr 2020 17:23:12 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Keep-Alive: timeout=30
+X-Xss-Protection: 1; mode=block
+X-Douban-Mobileapp: 0
+Expires: Sun, 1 Jan 2006 01:00:00 GMT
+Pragma: no-cache
+Cache-Control: must-revalidate, no-cache, private
+X-Frame-Options: SAMEORIGIN
+Access-Control-Allow-Origin: *
+X-DAE-App: accounts
+X-DAE-Instance: default
+Server: dae
+Strict-Transport-Security: max-age=15552000
+X-Content-Type-Options: nosniff
+Content-Length: 107
+
+{"status":"failed","message":"unmatch_name_password","description":"用户名或密码错误","payload":{}}
+
+------------------------------------------------------------------
+

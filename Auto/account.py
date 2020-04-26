@@ -25,6 +25,11 @@ class Account(object):
     def getMassage(self):
         pass
 
+    # 判断账号是否登陆成功。如果成功，返回uid；如果密码错误，就提示密码错误；如果没有是其他情况，就重试5次，不行就换号。
+    # 不对，账号登陆的第一步实际上只有三种状态：登陆成功、需要过滑块验证、连接超时。
+    # 如果是过滑块验证，那么通过验证后又有两种状态：密码正确或者密码错误。
+    # 如果是链接超时，那访问5遍，还是不行的话，就放弃这个ip
+    # 算了，把滑动验证码过掉，现在直接来写三种情况：登陆成功；出现滑动验证码，说明密码错误；连接超时，重新连接5次
     def signIn(self):
         s = requests.Session()
         resq_1 = s.get(URL_HOST, headers=HEADERS, verify=False)
@@ -36,10 +41,18 @@ class Account(object):
         # 这里要加上换IP和过验证码的功能
         # print(resq_2.text)
         uid = re.search('id":"(.*?)"', resq_2.text)
-        uid = uid.group(1)
-        # print(uid.group(1))
+        if uid.group(1):
+            uid=uid.group(1)
+            return uid
+        elif re.search("需要图形验证码",resq_2.text):
+            return "密码错误"
+        else:
+            print("连接超时，再连4次")
+            # 这里需要函数调用自身，就是需要函数的迭代吧，翻翻教材去
 
 if __name__ == '__main__':
-    s = requests.Session()
-    resq_1 = s.get(URL_HOST, headers=HEADERS, verify=False)
-    print(resq_1)
+    # s = requests.Session()
+    # resq_1 = s.get(URL_HOST, headers=HEADERS, verify=False)
+    # print(resq_1)
+    account=Account("15000950339","weippp5551994526")
+    account.signIn()
