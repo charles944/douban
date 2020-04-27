@@ -10,13 +10,8 @@ HEADERS={
     # 'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'zh-CN,zh;q=0.9'
 }
-sign_data={
-    'ck':'',
-    'name':'15000950339',
-    'password':'weippp555199452',
-    'remenber':'false',
-    'ticket':''
-}
+sign_data='{"ck":"","name":"%s","password":"%s","remenber":"false","ticket":""}'
+
 SIGNIN_HEADERS={
     'Host': 'accounts.douban.com',
     'Connection': 'keep-alive',

@@ -1,6 +1,8 @@
 import re
 import requests
 from Auto.Settings import *
+import json
+import sys
 
 class Account(object):
     def __init__(self,username,password):
@@ -32,23 +34,31 @@ class Account(object):
     # 算了，把滑动验证码过掉，现在直接来写三种情况：登陆成功；出现滑动验证码，说明密码错误；连接超时，重新连接5次
     def signIn(self):
         s = requests.Session()
+        # 任何网络访问都必须考虑到网络不好的情况，所以必须先把网络不好这种异常给捕获了
         resq_1 = s.get(URL_HOST, headers=HEADERS, verify=False)
         print(resq_1)
         # if resq_1==<Response [200]> :
-
-        resq_2 = s.post("https://accounts.douban.com/j/mobile/login/basic", data=sign_data, headers=SIGNIN_HEADERS,
+        sign_datas=json.loads(sign_data%(self.username,self.password))
+        resq_2 = s.post("https://accounts.douban.com/j/mobile/login/basic", data=sign_datas, headers=SIGNIN_HEADERS,
                         verify=False)
         # 这里要加上换IP和过验证码的功能
         # print(resq_2.text)
         uid = re.search('id":"(.*?)"', resq_2.text)
+        count_recursion=0
         if uid.group(1):
+            # 如果成功获取UID，则登陆成功
             uid=uid.group(1)
             return uid
         elif re.search("需要图形验证码",resq_2.text):
+            # 如果出现“需要图形验证码”，则密码错误
             return "密码错误"
         else:
             print("连接超时，再连4次")
-            # 这里需要函数调用自身，就是需要函数的迭代吧，翻翻教材去
+            if count_recursion<4:
+                self.signIn()
+            else:
+                sys.exit(0)
+            # 这里需要函数调用自身，就是需要函数的递归调用吧，翻翻教材去
 
 if __name__ == '__main__':
     # s = requests.Session()
