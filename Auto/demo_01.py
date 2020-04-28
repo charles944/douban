@@ -1,9 +1,48 @@
 
 import json
 import demjson
+import requests
 
-import json
-#
+# try:
+#     resq=requests.get("https://www.douban.com")
+# except:
+#     print("连接错误")
+# # print(resq)
+# i = 0
+# def test_01():
+#     print("我是你爸爸")
+#     global i
+#     if i<4:
+#         i=i+1
+#         print("i的值：",i)
+#         test_01()
+    # if i<4:
+    #     print("i的值：", i)
+    #     test_01()
+    #     i+=1
+
+def test_02(i):
+    print("我是你爸爸")
+    if i<4:
+        i+=1
+        print("i的值：",i)
+
+
+# x = 1
+# print(x)
+# def fun():
+#     global x
+#     if x < 20:
+#         x = x+2
+#         print(x)
+#     else:
+#         exit()
+#     fun()
+# fun()
+
+
+# if __name__ == '__main__':
+#     test_01()
 # user_info = '{"name" : "john", "gender" : "male", "age": 28}'
 # user_dict = eval(user_info)
 # print(type(user_dict))
@@ -75,10 +114,10 @@ import time
 #     'remenber':'false',
 #     'ticket':''
 # }
-usaername="charles"
-password="1004526succeed"
-sign_data='{"ck":"","name":"%s","password":"%s","remenber":"false","ticket":""}'
-sign_data=sign_data%(usaername,password)
-sign_data=json.loads(sign_data)
-# print(sign_data%(usaername,password))
-print(type(sign_data),sign_data)
+# usaername="charles"
+# password="1004526succeed"
+# sign_data='{"ck":"","name":"%s","password":"%s","remenber":"false","ticket":""}'
+# sign_data=sign_data%(usaername,password)
+# sign_data=json.loads(sign_data)
+# # print(sign_data%(usaername,password))
+# print(type(sign_data),sign_data)

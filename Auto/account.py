@@ -11,6 +11,10 @@ class Account(object):
         # self.nicknam=nickname
         # self.uid=uid
 
+    # 判断是否被封号。等有了被封的账号再来写这个功能。
+    def isClose(self):
+        pass
+
     # 获取已加入的小组
     def getGroups(self):
         pass
@@ -35,30 +39,40 @@ class Account(object):
     def signIn(self):
         s = requests.Session()
         # 任何网络访问都必须考虑到网络不好的情况，所以必须先把网络不好这种异常给捕获了
-        resq_1 = s.get(URL_HOST, headers=HEADERS, verify=False)
-        print(resq_1)
-        # if resq_1==<Response [200]> :
-        sign_datas=json.loads(sign_data%(self.username,self.password))
-        resq_2 = s.post("https://accounts.douban.com/j/mobile/login/basic", data=sign_datas, headers=SIGNIN_HEADERS,
-                        verify=False)
-        # 这里要加上换IP和过验证码的功能
-        # print(resq_2.text)
-        uid = re.search('id":"(.*?)"', resq_2.text)
-        count_recursion=0
-        if uid.group(1):
-            # 如果成功获取UID，则登陆成功
-            uid=uid.group(1)
-            return uid
-        elif re.search("需要图形验证码",resq_2.text):
-            # 如果出现“需要图形验证码”，则密码错误
-            return "密码错误"
+        try:
+            resq_1 = s.get(URL_HOST, headers=HEADERS, verify=False)
+        except:
+            print("网络连接错误")
+            sys.exit(0)
         else:
-            print("连接超时，再连4次")
-            if count_recursion<4:
-                self.signIn()
-            else:
+            print(resq_1)
+            # if resq_1==<Response [200]> :
+            sign_datas=json.loads(sign_data%(self.username,self.password))
+            try:
+                resq_2 = s.post("https://accounts.douban.com/j/mobile/login/basic", data=sign_datas, headers=SIGNIN_HEADERS,
+                                verify=False)
+            except:
+                print("网络连接错误")
                 sys.exit(0)
-            # 这里需要函数调用自身，就是需要函数的递归调用吧，翻翻教材去
+            else:
+                # 这里要加上换IP和过验证码的功能
+                # print(resq_2.text)
+                uid = re.search('id":"(.*?)"', resq_2.text)
+                count_recursion=0
+                if uid.group(1):
+                    # 如果成功获取UID，则登陆成功
+                    uid=uid.group(1)
+                    return uid
+                elif re.search("需要图形验证码",resq_2.text):
+                    # 如果出现“需要图形验证码”，则密码错误
+                    return "密码错误"
+                else:
+                    print("连接超时，再连4次")
+                    if count_recursion<4:
+                        self.signIn()
+                    else:
+                        sys.exit(0)
+                    # 这里需要函数调用自身，就是需要函数的递归调用吧，翻翻教材去
 
 if __name__ == '__main__':
     # s = requests.Session()

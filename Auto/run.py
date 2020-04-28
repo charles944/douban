@@ -31,4 +31,5 @@ if __name__ == '__main__':
             account=Account(username,password)
             # 发送登陆包，获取登陆包的返回值
             resq=account.signIn()
-
+            # 登录成功，接下来判断账号是否被封
+            is_Close=account.isClose()
