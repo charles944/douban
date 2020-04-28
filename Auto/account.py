@@ -27,8 +27,11 @@ class Account(object):
     def state(self):
         pass
 
-    # 获取账号收到的私信
+    # 获取账号收到的系统信息和用户信息
     def getMassage(self):
+        pass
+
+    def getInfo(self):
         pass
 
     # 判断账号是否登陆成功。如果成功，返回uid；如果密码错误，就提示密码错误；如果没有是其他情况，就重试5次，不行就换号。

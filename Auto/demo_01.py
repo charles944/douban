@@ -21,11 +21,21 @@ import requests
     #     test_01()
     #     i+=1
 
-def test_02(i):
-    print("我是你爸爸")
-    if i<4:
-        i+=1
-        print("i的值：",i)
+# def test_02(i):
+#     print("我是你爸爸")
+#     if i<4:
+#         i+=1
+#         print("i的值：",i)
+
+for i in list(range(10)):
+    # if i/2==0:
+    #     print(i)
+    # else:
+    #     continue
+    # print(i)
+    if i%2==0:
+        continue
+    print(i)
 
 
 # x = 1
