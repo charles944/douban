@@ -16,6 +16,8 @@ def send_words():
 
 print(time.time())
 
+
+# 我的操作对象,始终都是账号啊,根本没必要写小组这个类啊.这个类能用来干什么呢?
 class Group(object):
     def __init__(self,s,uid):
         # self.username=username

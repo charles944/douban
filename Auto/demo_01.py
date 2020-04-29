@@ -2,15 +2,41 @@
 import json
 import demjson
 import requests
+import time
+import random
 
-with open("setUp.json","r",encoding="utf-8") as f:
-    jsonText=f.read()
 
-resq=json.loads(jsonText)
-print(resq)
-print(type(resq))
-print('申请加入的小组:',resq['申请加入的小组'],type(resq['申请加入的小组']))
-print('使用的账号:',resq['使用的账号'],type(resq['使用的账号']))
+a={
+    "classmates":[{"name":"charles","gender":"male"},{"name":"tony","gender":"female"}]
+}
+print(a["classmates"][1]["name"])
+# def test():
+#     print(random.randint(0,1))
+#
+# for i in range(10):
+#     test()
+# with open("setUp.json","r",encoding="utf-8") as f:
+#     jsonText=f.read()
+#
+# resq=json.loads(jsonText)
+# print(resq)
+# print(type(resq))
+# print('申请加入的小组:',resq['申请加入的小组'],type(resq['申请加入的小组']))
+# print('使用的账号:',resq['使用的账号'],type(resq['使用的账号']))
+
+# class Test():
+#     def __init__(self,words):
+#         self.words=words
+#
+#     def dayin(self):
+#         time.time()
+#         print(self.words)
+#         print(int(time.time()))
+#
+# if __name__ == '__main__':
+#     test=Test("我是你爸爸，我真伟大")
+#     test.dayin()
+
 
 # try:
 #     resq=requests.get("https://www.douban.com")
