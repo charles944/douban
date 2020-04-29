@@ -3,6 +3,15 @@ import json
 import demjson
 import requests
 
+with open("setUp.json","r",encoding="utf-8") as f:
+    jsonText=f.read()
+
+resq=json.loads(jsonText)
+print(resq)
+print(type(resq))
+print('申请加入的小组:',resq['申请加入的小组'],type(resq['申请加入的小组']))
+print('使用的账号:',resq['使用的账号'],type(resq['使用的账号']))
+
 # try:
 #     resq=requests.get("https://www.douban.com")
 # except:
@@ -27,15 +36,15 @@ import requests
 #         i+=1
 #         print("i的值：",i)
 
-for i in list(range(10)):
-    # if i/2==0:
-    #     print(i)
-    # else:
-    #     continue
-    # print(i)
-    if i%2==0:
-        continue
-    print(i)
+# for i in list(range(10)):
+#     # if i/2==0:
+#     #     print(i)
+#     # else:
+#     #     continue
+#     # print(i)
+#     if i%2==0:
+#         continue
+#     print(i)
 
 
 # x = 1
