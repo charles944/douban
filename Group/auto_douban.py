@@ -14,8 +14,47 @@ URL_GROUP="https://www.douban.com/group/"
 HEADERS = {
     'Host': 'www.douban.com',
     'Referer': 'https://www.douban.com/',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'
+    # 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36';
+    'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3761.400 QQBrowser/10.6.4116.400',
 }
+
+def getproxy():
+    # resq=requests.get('http://http.9vps.com/getip.asp?username=charles&pwd=c3477e5847fd1d43acf1bcebba0be86d&geshi=1&fenge=1&fengefu=&getnum=0')
+    resq=requests.get('http://t.11jsq.com/index.php/api/entry?method=proxyServer.generate_api_url&packid=1&fa=0&fetch_key=&groupid=0&qty=1&time=1&pro=&city=&port=1&format=txt&ss=1&css=&dt=1&specialTxt=3&specialJson=&usertype=2')
+    print('现在使用的代理ip是%s'%resq.text.strip())
+    proxies = {
+        "https": resq.text.strip()
+    }
+    return proxies
+proxies=getproxy()
+
+def visit_html(url):
+    global proxies
+    try:
+        resq=requests.get(url,headers=HEADERS,proxies=proxies,timeout=1)
+    except:
+        print('访问失败，更换代理')
+        # time.sleep(10)
+        proxies=getproxy()
+        try:
+            resq = requests.get(url, headers=HEADERS, proxies=proxies,timeout=1)
+        except:
+            # time.sleep(10)
+            print("这个代理不行，换一个代理")
+            resq=visit_html(url)
+
+    if resq.status_code==200:
+        # print("resq的状态是200")
+        pass
+    else:
+        print("resq的状态是%d"%(resq.status_code),'需要重新申请代理')
+        proxies=getproxy()
+        try:
+            resq = requests.get(url, headers=HEADERS, proxies=proxies,timeout=1)
+        except:
+            print("这个代理不行，换一个代理")
+            resq=visit_html(url)
+    return resq
 
 def active_score(data_list):
     INIT_TIMESTAMP = 1577808000
@@ -25,12 +64,11 @@ def active_score(data_list):
     # timeStamp=int(time.mktime(timeArray))
     # print('2020-1-1 00:00:00:',timeStamp)
     # print(int(time.time()))
-
     # start_time='04-20 02:04'
     # timeArray=time.strptime(start_time,"%m-%d %H:%M")
     # print(timeArray)
     for start_time in data_list:
-        if "2019" in start_time or "2018" in start_time or "2017" in start_time or "2016" in start_time or "2015" in start_time or "2014" in start_time or "2013" in start_time or "2012" in start_time or "2011" in start_time or "2010" in start_time:
+        if "2019" in start_time or "2018" in start_time or "2017" in start_time or "2016" in start_time or "2015" in start_time or "2014" in start_time or "2013" in start_time or "2012" in start_time or "2011" in start_time or "2010" in start_time  or "2009" in start_time or "2008" in start_time or "2007" in start_time or "2006" in start_time or "2005" in start_time or "2004" in start_time or "2003" in start_time :
             timeArray = time.strptime(start_time, "%Y-%m-%d")
         else:
             start_time = '-'.join(["2020", start_time])
@@ -43,28 +81,38 @@ def active_score(data_list):
     sum = 0
     for a in SCORE_LIST:
         sum = sum + a
-    act_score=int((sum/len(SCORE_LIST))*100)
-    return act_score
+    try:
+        act_score=int((sum/len(SCORE_LIST))*100)
+        return act_score
+    except:
+        print("遇到了除0错误")
+        return 0
+    # return act_score
 
 def save_groupinfo(param, number_group, param1,act_score):
     sql="INSERT INTO xiaozu VALUES ('%s','%s','%s','%s')"%(param, number_group, param1,act_score)
     print(param, number_group, param1,act_score)
-    cursor.execute(sql)
-    db.commit()
+    try:
+        cursor.execute(sql)
+        db.commit()
+    except:
+        print('sql语句有非法字符')
 
 
 def get_score(url):
-    resq=requests.get(url,headers=HEADERS)
+    resq=visit_html(url)
     HTML=etree.HTML(resq.text)
     data_list=HTML.xpath("//tr/td[contains(@class,'time')]/text()")
-    act_score=active_score(data_list)
+    top=HTML.xpath("//img[@alt='[置顶]']")
+    print("首页有%d条帖子，其中%d置顶帖"%(len(data_list),len(top)))
+    act_score=active_score(data_list[len(top):])
     return act_score
 
 def reflash_page(keywords,j):
     # 首先将i值归零，如果该方法调用结束，i依然为0，那就停止循环，开始下一个词语
     i=0
     url="https://www.douban.com/j/search?q=%s&start=%s&cat=1019"%(keywords,str(j*20))
-    resq_json=requests.get(url,headers=HEADERS)
+    resq_json=visit_html(url)
     resq_json=resq_json.text
     url_list = re.findall("url=(.*?)query", resq_json)
     title_list = re.findall(r'title=\\"(.*?)\\">', resq_json)
@@ -98,7 +146,7 @@ def reflash_page(keywords,j):
 
 
 def get_info(url,keywords):
-    resq = requests.get(url, headers=HEADERS)
+    resq=visit_html(url)
     html = etree.HTML(resq.text)
     # number_groups=len(html.xpath("//div[@class='info']/text()"))
     # 获取页面的小组名称、小组链接和小组人数
@@ -138,7 +186,7 @@ def get_info(url,keywords):
         i=reflash_page(keywords,j)
 
 if __name__ == '__main__':
-    with open("keywords.txt", "r", encoding='utf-8') as f_1:
+    with open("keywords.txt", "r", encoding='utf-8-sig') as f_1:
         keywords = f_1.read()
         keywords = keywords.split(" ")
         keywords_arr = []
@@ -147,24 +195,31 @@ if __name__ == '__main__':
             if len(word) != 0:
                 keywords_arr.append(word)
         print(keywords_arr)
-    with open("test_01.txt", "a+", encoding="utf-8") as f_2:
+        # print(len(keywords_arr))
+    with open("test_02.txt", "a+", encoding="utf-8") as f_2:
         f_2.seek(0)
         word_list_02 = f_2.read()
-        word_list_02 = word_list_02.split(" ")
-        index = keywords_arr.index(word_list_02[len(word_list_02) - 1])
-        print(index)
-        loop_count = len(keywords_arr) - index
+        word_list_02 = word_list_02.split("\n")
+        print(word_list_02)
+        update_word=word_list_02[len(word_list_02) - 1]
+        # if ("\ufeff" in update_word):
+        #     update_word=update_word.replace("\ufeff","")
+        print("update_word是%s"%update_word)
+        index = keywords_arr.index(update_word)
+        # print(index)
+        loop_count = len(keywords_arr) - index-1
         for i in range(loop_count):
-            word = keywords_arr[index + i]
+            word = keywords_arr[index + i+1]
             # for word in keywords:
             #     word=word.strip()
             #     if len(word)!=0:
             time.sleep(1)
-            print(word)
-            print(f_2.tell())
-            f_2.write(word + " ")
-            url = URL_SEARCH + keywords
-            get_info(url, keywords)
+            # print(word)
+            print("f_2.tell()的值是%d"%f_2.tell())
+            url = URL_SEARCH + word
+            print("现在查询的词是%s" % word)
+            get_info(url, word)
+            f_2.write("\n"+word)
     # code_list = code.split(" ")
     # print(len(code_list))
     # # keyswords_list=[]

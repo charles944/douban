@@ -6,6 +6,7 @@ import sys
 import time
 from lxml import etree
 import random
+from Auto.utils import *
 
 class Account(object):
     def __init__(self,username,password):
@@ -88,6 +89,8 @@ class Account(object):
                     else:
                         sys.exit(0)
                     # 这里需要函数调用自身，就是需要函数的递归调用吧，翻翻教材去
+
+
 
     def getGroups(s,uid):
         url='https://www.douban.com/group/people/%s/joins'%uid
