@@ -1,0 +1,5 @@
+17-34-2020 17:34:34 root:CRITICAL:Exception occurred
+Traceback (most recent call last):
+  File "E:/python_workspace/douban/Auto2/demo_log.py", line 16, in <module>
+    c = a / b
+ZeroDivisionError: division by zero

@@ -1,0 +1,17 @@
+from selenium import webdriver
+
+broswer=webdriver.Chrome()
+broswer.get("https://www.douban.com")
+broswer.implicitly_wait(20)
+tel_inpuut=broswer.find_element_by_xpath("//input[contains(@class,'account-form-input')]")
+print(tel_inpuut)
+switch_button=broswer.find_element_by_xpath("//li[@class='account-tab-account']")
+switch_button.click()
+broswer.implicitly_wait(3)
+username_input=broswer.find_element_by_xpath("//input[contains(@id,'username')]")
+username_input.send_keys("1339456879@qq.com")
+password_input=broswer.find_element_by_xpath("//input[contains(@id,'password')]")
+password_input.send_keys("weippp5551994526")
+broswer.implicitly_wait(3)
+login_button=broswer.find_element_by_xpath("//a[contains(@class,'btn btn-account')]")
+login_button.clear()
